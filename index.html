@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/FincaFunza_1.js"></script>
+        <script src="data/FincaSanFelipe_2.js"></script>
+        <script src="data/FincaBosque_3.js"></script>
+        <script src="data/FincaSantaClara_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[4.74109456912759,-74.21062178495268],[4.761806873241474,-74.18797325357201]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleSatellite_0');
+        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        function pop_FincaFunza_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bloques ID</th>\
+                        <td>' + (feature.properties['Bloques ID'] !== null ? autolinker.link(feature.properties['Bloques ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Especie</th>\
+                        <td>' + (feature.properties['Especie'] !== null ? autolinker.link(feature.properties['Especie'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area (m2)</th>\
+                        <td>' + (feature.properties['Area (m2)'] !== null ? autolinker.link(feature.properties['Area (m2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FincaFunza_1_0(feature) {
+            switch(String(feature.properties['Especie'])) {
+                case 'Alstresia':
+                    return {
+                pane: 'pane_FincaFunza_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.3)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,131,0,0.3)',
+                interactive: true,
+            }
+                    break;
+                case 'Alstroemeria':
+                    return {
+                pane: 'pane_FincaFunza_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.3)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,240,21,0.3)',
+                interactive: true,
+            }
+                    break;
+                case 'Arandanos':
+                    return {
+                pane: 'pane_FincaFunza_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.3)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(132,12,243,0.3)',
+                interactive: true,
+            }
+                    break;
+                case 'Miniclavel':
+                    return {
+                pane: 'pane_FincaFunza_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.3)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,249,6,0.3)',
+                interactive: true,
+            }
+                    break;
+                case 'Solomio':
+                    return {
+                pane: 'pane_FincaFunza_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.3)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,170,54,0.3)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FincaFunza_1');
+        map.getPane('pane_FincaFunza_1').style.zIndex = 401;
+        map.getPane('pane_FincaFunza_1').style['mix-blend-mode'] = 'normal';
+        var layer_FincaFunza_1 = new L.geoJson(json_FincaFunza_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FincaFunza_1',
+            layerName: 'layer_FincaFunza_1',
+            pane: 'pane_FincaFunza_1',
+            onEachFeature: pop_FincaFunza_1,
+            style: style_FincaFunza_1_0,
+        });
+        bounds_group.addLayer(layer_FincaFunza_1);
+        map.addLayer(layer_FincaFunza_1);
+        function pop_FincaSanFelipe_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area (m2)</th>\
+                        <td>' + (feature.properties['Area (m2)'] !== null ? autolinker.link(feature.properties['Area (m2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Especie</th>\
+                        <td>' + (feature.properties['Especie'] !== null ? autolinker.link(feature.properties['Especie'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Id Bloque</th>\
+                        <td>' + (feature.properties['Id Bloque'] !== null ? autolinker.link(feature.properties['Id Bloque'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FincaSanFelipe_2_0(feature) {
+            switch(String(feature.properties['Especie'])) {
+                case 'Alstresia':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,131,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Alstroemeria':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,240,21,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arandanos':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(132,12,243,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Miniclavel':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,249,6,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Solomio':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,170,54,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lirios':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,22,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '0':
+                    return {
+                pane: 'pane_FincaSanFelipe_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(66,173,254,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FincaSanFelipe_2');
+        map.getPane('pane_FincaSanFelipe_2').style.zIndex = 402;
+        map.getPane('pane_FincaSanFelipe_2').style['mix-blend-mode'] = 'normal';
+        var layer_FincaSanFelipe_2 = new L.geoJson(json_FincaSanFelipe_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FincaSanFelipe_2',
+            layerName: 'layer_FincaSanFelipe_2',
+            pane: 'pane_FincaSanFelipe_2',
+            onEachFeature: pop_FincaSanFelipe_2,
+            style: style_FincaSanFelipe_2_0,
+        });
+        bounds_group.addLayer(layer_FincaSanFelipe_2);
+        map.addLayer(layer_FincaSanFelipe_2);
+        function pop_FincaBosque_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Id Bloque</th>\
+                        <td>' + (feature.properties['Id Bloque'] !== null ? autolinker.link(feature.properties['Id Bloque'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Especie</th>\
+                        <td>' + (feature.properties['Especie'] !== null ? autolinker.link(feature.properties['Especie'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area (m2)</th>\
+                        <td>' + (feature.properties['Area (m2)'] !== null ? autolinker.link(feature.properties['Area (m2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FincaBosque_3_0(feature) {
+            switch(String(feature.properties['Especie'])) {
+                case 'Alstresia':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,131,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Alstroemeria':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,240,21,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arandanos':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(132,12,243,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Miniclavel':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,249,6,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Solomio':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,170,54,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Lirios':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,22,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '0':
+                    return {
+                pane: 'pane_FincaBosque_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(66,173,254,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FincaBosque_3');
+        map.getPane('pane_FincaBosque_3').style.zIndex = 403;
+        map.getPane('pane_FincaBosque_3').style['mix-blend-mode'] = 'normal';
+        var layer_FincaBosque_3 = new L.geoJson(json_FincaBosque_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FincaBosque_3',
+            layerName: 'layer_FincaBosque_3',
+            pane: 'pane_FincaBosque_3',
+            onEachFeature: pop_FincaBosque_3,
+            style: style_FincaBosque_3_0,
+        });
+        bounds_group.addLayer(layer_FincaBosque_3);
+        map.addLayer(layer_FincaBosque_3);
+        function pop_FincaSantaClara_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Id</th>\
+                        <td>' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Id Bloque</th>\
+                        <td>' + (feature.properties['Id Bloque'] !== null ? autolinker.link(feature.properties['Id Bloque'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Especie</th>\
+                        <td>' + (feature.properties['Especie'] !== null ? autolinker.link(feature.properties['Especie'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area (m2)</th>\
+                        <td>' + (feature.properties['Area (m2)'] !== null ? autolinker.link(feature.properties['Area (m2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FincaSantaClara_4_0(feature) {
+            switch(String(feature.properties['Especie'])) {
+                case 'Alstresia':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,131,0,0.1)',
+                interactive: true,
+            }
+                    break;
+                case 'Alstroemeria':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,240,21,0.1)',
+                interactive: true,
+            }
+                    break;
+                case 'Arandanos':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(132,12,243,0.1)',
+                interactive: true,
+            }
+                    break;
+                case 'Miniclavel':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,249,6,0.1)',
+                interactive: true,
+            }
+                    break;
+                case 'Solomio':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,170,54,0.1)',
+                interactive: true,
+            }
+                    break;
+                case 'Lirios':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,22,35,0.1)',
+                interactive: true,
+            }
+                    break;
+                case '0':
+                    return {
+                pane: 'pane_FincaSantaClara_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.1)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(66,173,254,0.1)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_FincaSantaClara_4');
+        map.getPane('pane_FincaSantaClara_4').style.zIndex = 404;
+        map.getPane('pane_FincaSantaClara_4').style['mix-blend-mode'] = 'normal';
+        var layer_FincaSantaClara_4 = new L.geoJson(json_FincaSantaClara_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FincaSantaClara_4',
+            layerName: 'layer_FincaSantaClara_4',
+            pane: 'pane_FincaSantaClara_4',
+            onEachFeature: pop_FincaSantaClara_4,
+            style: style_FincaSantaClara_4_0,
+        });
+        bounds_group.addLayer(layer_FincaSantaClara_4);
+        map.addLayer(layer_FincaSantaClara_4);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Finca Santa Clara<br /><table><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Alstresia0.png" /></td><td>Alstresia</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Alstroemeria1.png" /></td><td>Alstroemeria</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Arandanos2.png" /></td><td>Arandanos</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Miniclavel3.png" /></td><td>Miniclavel</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Solomio4.png" /></td><td>Solomio</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_Lirios5.png" /></td><td>Lirios</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSantaClara_4_06.png" /></td><td>0</td></tr></table>': layer_FincaSantaClara_4,'Finca Bosque<br /><table><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Alstresia0.png" /></td><td>Alstresia</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Alstroemeria1.png" /></td><td>Alstroemeria</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Arandanos2.png" /></td><td>Arandanos</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Miniclavel3.png" /></td><td>Miniclavel</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Solomio4.png" /></td><td>Solomio</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_Lirios5.png" /></td><td>Lirios</td></tr><tr><td style="text-align: center;"><img src="legend/FincaBosque_3_06.png" /></td><td>0</td></tr></table>': layer_FincaBosque_3,'Finca San Felipe<br /><table><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Alstresia0.png" /></td><td>Alstresia</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Alstroemeria1.png" /></td><td>Alstroemeria</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Arandanos2.png" /></td><td>Arandanos</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Miniclavel3.png" /></td><td>Miniclavel</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Solomio4.png" /></td><td>Solomio</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_Lirios5.png" /></td><td>Lirios</td></tr><tr><td style="text-align: center;"><img src="legend/FincaSanFelipe_2_06.png" /></td><td>0</td></tr></table>': layer_FincaSanFelipe_2,'Finca Funza<br /><table><tr><td style="text-align: center;"><img src="legend/FincaFunza_1_Alstresia0.png" /></td><td>Alstresia</td></tr><tr><td style="text-align: center;"><img src="legend/FincaFunza_1_Alstroemeria1.png" /></td><td>Alstroemeria</td></tr><tr><td style="text-align: center;"><img src="legend/FincaFunza_1_Arandanos2.png" /></td><td>Arandanos</td></tr><tr><td style="text-align: center;"><img src="legend/FincaFunza_1_Miniclavel3.png" /></td><td>Miniclavel</td></tr><tr><td style="text-align: center;"><img src="legend/FincaFunza_1_Solomio4.png" /></td><td>Solomio</td></tr></table>': layer_FincaFunza_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_FincaFunza_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Bloques ID'] !== null?String('<div style="color: #000000; font-size: 8pt; font-weight: bold; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Bloques ID']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FincaFunza_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FincaSanFelipe_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Id Bloque'] !== null?String('<div style="color: #000000; font-size: 8pt; font-weight: bold; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Id Bloque']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FincaSanFelipe_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FincaBosque_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Id Bloque'] !== null?String('<div style="color: #000000; font-size: 8pt; font-weight: bold; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Id Bloque']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FincaBosque_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FincaSantaClara_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Id Bloque'] !== null?String('<div style="color: #000000; font-size: 5pt; font-weight: bold; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Id Bloque']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FincaSantaClara_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_FincaFunza_1,layer_FincaSanFelipe_2,layer_FincaBosque_3,layer_FincaSantaClara_4]);
+        map.on("zoomend", function(){
+            resetLabels([layer_FincaFunza_1,layer_FincaSanFelipe_2,layer_FincaBosque_3,layer_FincaSantaClara_4]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_FincaFunza_1,layer_FincaSanFelipe_2,layer_FincaBosque_3,layer_FincaSantaClara_4]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_FincaFunza_1,layer_FincaSanFelipe_2,layer_FincaBosque_3,layer_FincaSantaClara_4]);
+        });
+        </script>
+    </body>
+</html>
